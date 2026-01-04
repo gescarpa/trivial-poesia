@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import "./index.css";
+import lopeImg from "./assets/lope.png";
 
 const LOCAL_STORAGE_KEY = "trivial-poesia-ranking";
 
@@ -1183,7 +1184,7 @@ function App() {
       <header className="app-header">
         <h1>POETRIVIAL</h1>
         <p className="subtitle">
-          Pon a prueba tus conocimientos poéticos y deja de creerte Lope de Vega.
+          Pon a prueba tus conocimientos poéticos y deja ya de creerte Lope de Vega.
         </p>
       </header>
 
@@ -1332,6 +1333,11 @@ function QuizScreen({
 
   return (
     <main className="screen">
+      <img
+      src={lopeImg}
+      alt="Lope de Vega"
+      className="lope-figure"
+    />
       <div className="quiz-header">
         <span className="badge">
           {category} · {question.difficulty}

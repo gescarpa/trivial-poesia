@@ -369,3 +369,27 @@ body {
     width: auto;
   }
 }
+.screen {
+  position: relative; /* ya lo tienes: si no, añádelo */
+}
+
+/* Figura de Lope asomando por detrás de la tarjeta */
+.lope-figure {
+  position: absolute;
+  right: -25px;
+  top: -35px;
+  width: 90px;
+  height: auto;
+  opacity: 0.9;
+  pointer-events: none;
+  filter: drop-shadow(0 8px 16px rgba(0,0,0,0.5));
+}
+
+/* En móvil, que no moleste tanto */
+@media (max-width: 600px) {
+  .lope-figure {
+    right: -10px;
+    top: -25px;
+    width: 70px;
+  }
+}
