@@ -546,6 +546,527 @@ const QUESTIONS = [
     "Buena parte de la obra de Cernuda muestra la imposibilidad de reconciliar deseo y realidad sin conflicto.",
   difficulty: "avanzado",
 },
+{
+  id: 29,
+  category: "Poesía latinoamericana",
+  question:
+    "¿Qué poeta chileno escribió «Veinte poemas de amor y una canción desesperada»?",
+  options: [
+    "Pablo Neruda",
+    "Gabriela Mistral",
+    "Nicanor Parra",
+    "Vicente Huidobro",
+  ],
+  correctIndex: 0,
+  poemSnippet: "",
+  author: "Pablo Neruda",
+  sourcePeriod: "Poesía latinoamericana del siglo XX",
+  explanation:
+    "Es uno de los libros más conocidos de Neruda y un clásico de la poesía amorosa en castellano.",
+  difficulty: "básico",
+},
+{
+  id: 30,
+  category: "Poesía latinoamericana",
+  question:
+    "¿Cuál de estas poetas recibió el Premio Nobel de Literatura por su obra poética?",
+  options: [
+    "Gabriela Mistral",
+    "Alfonsina Storni",
+    "Alejandra Pizarnik",
+    "Rosario Castellanos",
+  ],
+  correctIndex: 0,
+  poemSnippet: "",
+  author: "Gabriela Mistral",
+  sourcePeriod: "Poesía chilena del siglo XX",
+  explanation:
+    "Gabriela Mistral fue la primera autora latinoamericana en recibir el Nobel de Literatura, en 1945.",
+  difficulty: "básico",
+},
+{
+  id: 31,
+  category: "Poesía latinoamericana",
+  question:
+    "¿Qué país se asocia con el poeta César Vallejo, autor de «Trilce»?",
+  options: [
+    "México",
+    "Perú",
+    "Argentina",
+    "Uruguay",
+  ],
+  correctIndex: 1,
+  poemSnippet: "",
+  author: "César Vallejo",
+  sourcePeriod: "Vanguardia latinoamericana",
+  explanation:
+    "César Vallejo es un poeta peruano central en la renovación vanguardista de la poesía en castellano.",
+  difficulty: "básico",
+},
+
+{
+  id: 32,
+  category: "Poesía latinoamericana",
+  question:
+    "¿Qué rasgo se asocia a menudo con la poesía de César Vallejo en libros como «Trilce»?",
+  options: [
+    "Lenguaje sencillo y transparente sin juegos formales",
+    "Experimentación radical con el lenguaje y la sintaxis",
+    "Uso exclusivo de formas clásicas italianas",
+    "Poesía narrativa de tono costumbrista",
+  ],
+  correctIndex: 1,
+  poemSnippet: "",
+  author: "César Vallejo",
+  sourcePeriod: "Vanguardia latinoamericana",
+  explanation:
+    "Vallejo lleva la experimentación del lenguaje muy lejos, rompiendo sintaxis y expectativas semánticas.",
+  difficulty: "intermedio",
+},
+{
+  id: 33,
+  category: "Poesía latinoamericana",
+  question:
+    "¿Qué tema aparece con frecuencia en la poesía de Mario Benedetti?",
+  options: [
+    "La épica medieval europea",
+    "La vida cotidiana, el amor y el compromiso político",
+    "La astronomía y la física cuántica",
+    "Exclusivamente mitología griega",
+  ],
+  correctIndex: 1,
+  poemSnippet: "",
+  author: "Mario Benedetti",
+  sourcePeriod: "Poesía uruguaya del siglo XX",
+  explanation:
+    "Benedetti combina lo cotidiano, el amor, el humor y la reflexión política de forma accesible.",
+  difficulty: "intermedio",
+},
+{
+  id: 34,
+  category: "Poesía latinoamericana",
+  question:
+    "¿Cuál de estas afirmaciones describe mejor a la poesía de Octavio Paz?",
+  options: [
+    "Se limita a poemas breves humorísticos sin reflexión",
+    "Combina reflexión filosófica, exploración del lenguaje y simbología amorosa",
+    "Es exclusivamente poesía rural costumbrista",
+    "Se centra solo en el verso rimado tradicional",
+  ],
+  correctIndex: 1,
+  poemSnippet: "",
+  author: "Octavio Paz",
+  sourcePeriod: "Poesía mexicana del siglo XX",
+  explanation:
+    "Octavio Paz integra reflexión filosófica, exploración del tiempo, el amor y el lenguaje en su poesía.",
+  difficulty: "intermedio",
+},
+
+{
+  id: 35,
+  category: "Poesía latinoamericana",
+  question:
+    "En el verso «Puedo escribir los versos más tristes esta noche», el tono dominante del poema tiende hacia:",
+  options: [
+    "La exaltación alegre del amor correspondido",
+    "La ironía ligera",
+    "La melancolía por la pérdida amorosa",
+    "La sátira política explícita",
+  ],
+  correctIndex: 2,
+  poemSnippet:
+    "Puedo escribir los versos más tristes esta noche.\nEscribir, por ejemplo: «La noche está estrellada...»",
+  author: "Pablo Neruda",
+  sourcePeriod: "Poesía amorosa latinoamericana",
+  explanation:
+    "El poema se construye desde la nostalgia y la conciencia de la pérdida del amor.",
+  difficulty: "avanzado",
+},
+{
+  id: 36,
+  category: "Poesía latinoamericana",
+  question:
+    "En muchos textos de Alejandra Pizarnik, la relación con la propia voz poética puede describirse como:",
+  options: [
+    "Segura, expansiva y celebratoria",
+    "Distanciada y puramente satírica",
+    "Fragmentaria, conflictiva y atravesada por el silencio",
+    "Exclusivamente descriptiva del paisaje rural",
+  ],
+  correctIndex: 2,
+  poemSnippet: "",
+  author: "Alejandra Pizarnik",
+  sourcePeriod: "Poesía argentina del siglo XX",
+  explanation:
+    "Pizarnik trabaja una voz que vacila, se fragmenta y cuestiona su posibilidad misma de decir.",
+  difficulty: "avanzado",
+},
+{
+  id: 37,
+  category: "Poesía latinoamericana",
+  question:
+    "En ciertos poemas de Nicanor Parra, la llamada 'antipoesía' se manifiesta sobre todo en:",
+  options: [
+    "La solemnidad extrema del tono",
+    "El rechazo del humor y la coloquialidad",
+    "La ruptura de la retórica elevada mediante ironía y lenguaje cotidiano",
+    "El uso exclusivo de endecasílabos clásicos",
+  ],
+  correctIndex: 2,
+  poemSnippet: "",
+  author: "Nicanor Parra",
+  sourcePeriod: "Antipoesía chilena",
+  explanation:
+    "La antipoesía de Parra desmonta la solemnidad poética usando humor, coloquialismos y gestos anticlimáticos.",
+  difficulty: "avanzado",
+},
+{
+  id: 38,
+  category: "Poesía escrita por mujeres",
+  question:
+    "¿Qué poeta uruguaya es conocida por sus poemas amorosos intensos como «Ya no»?",
+  options: [
+    "Idea Vilariño",
+    "Gabriela Mistral",
+    "Alfonsina Storni",
+    "Juana de Ibarbourou",
+  ],
+  correctIndex: 0,
+  poemSnippet: "",
+  author: "Idea Vilariño",
+  sourcePeriod: "Poesía uruguaya del siglo XX",
+  explanation:
+    "Idea Vilariño es una voz central de la poesía amorosa y existencial en el Río de la Plata.",
+  difficulty: "básico",
+},
+{
+  id: 39,
+  category: "Poesía escrita por mujeres",
+  question:
+    "¿Qué poeta argentina escribió el poema «Tú me quieres blanca»?",
+  options: [
+    "Alejandra Pizarnik",
+    "Alfonsina Storni",
+    "Juana Bignozzi",
+    "Silvina Ocampo",
+  ],
+  correctIndex: 1,
+  poemSnippet: "",
+  author: "Alfonsina Storni",
+  sourcePeriod: "Poesía modernista y posmodernista argentina",
+  explanation:
+    "Alfonsina Storni cuestiona en este poema los mandatos patriarcales sobre la pureza femenina.",
+  difficulty: "básico",
+},
+{
+  id: 40,
+  category: "Poesía escrita por mujeres",
+  question:
+    "¿Qué poeta ganó el Premio Nobel de Literatura y es autora de «Desolación» y «Ternura»?",
+  options: [
+    "Rosario Castellanos",
+    "Chantal Maillard",
+    "Gabriela Mistral",
+    "Ida Vitale",
+  ],
+  correctIndex: 2,
+  poemSnippet: "",
+  author: "Gabriela Mistral",
+  sourcePeriod: "Poesía chilena del siglo XX",
+  explanation:
+    "Gabriela Mistral recibió el Nobel y es una figura clave de la poesía latinoamericana escrita por mujeres.",
+  difficulty: "básico",
+},
+
+{
+  id: 41,
+  category: "Poesía escrita por mujeres",
+  question:
+    "En «Hombres necios que acusáis», ¿qué critica principalmente Sor Juana Inés de la Cruz?",
+  options: [
+    "La pobreza de recursos métricos",
+    "La falta de fe religiosa",
+    "La doble moral masculina hacia las mujeres",
+    "El abandono de la tradición clásica",
+  ],
+  correctIndex: 2,
+  poemSnippet: "",
+  author: "Sor Juana Inés de la Cruz",
+  sourcePeriod: "Barroco novohispano",
+  explanation:
+    "El poema denuncia la hipocresía de exigir a las mujeres conductas contradictorias.",
+  difficulty: "intermedio",
+},
+{
+  id: 42,
+  category: "Poesía escrita por mujeres",
+  question:
+    "¿Qué rasgo se asocia con frecuencia a la poesía de Alejandra Pizarnik?",
+  options: [
+    "Tono épico y nacionalista",
+    "Lenguaje coloquial humorístico",
+    "Brevedad, intensidad y tono existencial",
+    "Descripciones costumbristas de la vida rural",
+  ],
+  correctIndex: 2,
+  poemSnippet: "",
+  author: "Alejandra Pizarnik",
+  sourcePeriod: "Poesía argentina del siglo XX",
+  explanation:
+    "Pizarnik trabaja poemas breves e intensos, con fuerte carga existencial y trabajo con el silencio.",
+  difficulty: "intermedio",
+},
+{
+  id: 43,
+  category: "Poesía escrita por mujeres",
+  question:
+    "¿Qué tema recorre buena parte de la obra poética de Rosario Castellanos?",
+  options: [
+    "La guerra mundial y la tecnología",
+    "La relación entre género, poder y cultura",
+    "La vida de los emperadores romanos",
+    "La pura descripción de paisajes marinos",
+  ],
+  correctIndex: 1,
+  poemSnippet: "",
+  author: "Rosario Castellanos",
+  sourcePeriod: "Poesía mexicana del siglo XX",
+  explanation:
+    "Castellanos reflexiona a menudo sobre la condición de las mujeres y las estructuras de poder.",
+  difficulty: "intermedio",
+},
+
+{
+  id: 44,
+  category: "Poesía escrita por mujeres",
+  question:
+    "En muchos textos de Idea Vilariño, la experiencia amorosa aparece marcada por:",
+  options: [
+    "La euforia permanente",
+    "La ironía distante sin implicación afectiva",
+    "La intensidad y la conciencia de la pérdida",
+    "El puro juego formal sin emociones",
+  ],
+  correctIndex: 2,
+  poemSnippet: "",
+  author: "Idea Vilariño",
+  sourcePeriod: "Poesía uruguaya del siglo XX",
+  explanation:
+    "Su poesía amorosa es extremadamente intensa y a la vez muy lúcida respecto al dolor de la pérdida.",
+  difficulty: "avanzado",
+},
+{
+  id: 45,
+  category: "Poesía escrita por mujeres",
+  question:
+    "En «Tú me quieres blanca», el uso de imperativos y enumeraciones sirve para:",
+  options: [
+    "Describir un paisaje natural sin conflicto",
+    "Reforzar el tono de exigencia y denuncia",
+    "Imitar la poesía mística del Siglo de Oro",
+    "Introducir un juego puramente humorístico",
+  ],
+  correctIndex: 1,
+  poemSnippet: "",
+  author: "Alfonsina Storni",
+  sourcePeriod: "Poesía feminista de inicios del siglo XX",
+  explanation:
+    "Los imperativos y la repetición subrayan la denuncia de las imposiciones sobre el cuerpo y la vida de las mujeres.",
+  difficulty: "avanzado",
+},
+{
+  id: 46,
+  category: "Poesía escrita por mujeres",
+  question:
+    "En muchos poemas de Gabriela Mistral, la figura de la maternidad aparece como:",
+  options: [
+    "Una experiencia siempre idílica y sin conflicto",
+    "Una metáfora compleja que incluye cuidado, pérdida y dolor",
+    "Un tema estrictamente biográfico sin elaboración simbólica",
+    "Un motivo puramente decorativo sin importancia temática",
+  ],
+  correctIndex: 1,
+  poemSnippet: "",
+  author: "Gabriela Mistral",
+  sourcePeriod: "Poesía chilena del siglo XX",
+  explanation:
+    "La maternidad en Mistral combina ternura, duelo y dimensión simbólica más allá de lo autobiográfico.",
+  difficulty: "avanzado",
+},
+{
+  id: 47,
+  category: "Poesía contemporánea",
+  question:
+    "¿Qué rasgo formal se ha generalizado en mucha poesía contemporánea en castellano?",
+  options: [
+    "El uso obligatorio del soneto clásico",
+    "El verso libre sin medida fija",
+    "El alejandrino con cesura siempre marcada",
+    "La redondilla con rima abrazada",
+  ],
+  correctIndex: 1,
+  poemSnippet: "",
+  author: "",
+  sourcePeriod: "Poesía contemporánea",
+  explanation:
+    "El verso libre es muy frecuente, aunque convive con formas métricas tradicionales.",
+  difficulty: "básico",
+},
+{
+  id: 48,
+  category: "Poesía contemporánea",
+  question:
+    "¿Qué medio de difusión se ha vuelto clave para mucha poesía contemporánea reciente?",
+  options: [
+    "Los cancioneros manuscritos",
+    "Las academias reales exclusivamente",
+    "Las redes sociales y plataformas digitales",
+    "Las inscripciones en piedra",
+  ],
+  correctIndex: 2,
+  poemSnippet: "",
+  author: "",
+  sourcePeriod: "Poesía digital",
+  explanation:
+    "Las redes sociales y plataformas digitales han transformado la circulación y recepción de la poesía.",
+  difficulty: "básico",
+},
+{
+  id: 49,
+  category: "Poesía contemporánea",
+  question:
+    "¿Qué tema aparece con frecuencia en la llamada 'poesía de la experiencia' en España?",
+  options: [
+    "La épica mitológica grecolatina",
+    "Relatos del yo en contextos cotidianos",
+    "Exclusivamente tratados de métrica clásica",
+    "La poesía pastoril renacentista",
+  ],
+  correctIndex: 1,
+  poemSnippet: "",
+  author: "",
+  sourcePeriod: "Poesía de la experiencia",
+  explanation:
+    "La poesía de la experiencia suele partir de anécdotas o escenas cotidianas para reflexionar sobre la identidad y el tiempo.",
+  difficulty: "básico",
+},
+
+{
+  id: 50,
+  category: "Poesía contemporánea",
+  question:
+    "En mucha poesía que circula en redes, el tono predominante suele ser:",
+  options: [
+    "Altamente hermético y críptico",
+    "Confesional, directo y emocional",
+    "Exclusivamente narrativo y épico",
+    "Técnico y académico",
+  ],
+  correctIndex: 1,
+  poemSnippet: "",
+  author: "",
+  sourcePeriod: "Poesía en redes",
+  explanation:
+    "Los textos breves, confesionales y de tono directo funcionan bien en entornos digitales.",
+  difficulty: "intermedio",
+},
+{
+  id: 51,
+  category: "Poesía contemporánea",
+  question:
+    "¿Qué recurso se explota a menudo en la poesía visual y experimental contemporánea?",
+  options: [
+    "La estricta regularidad de la estrofa",
+    "La disposición gráfica del texto en la página",
+    "La eliminación total de la imagen",
+    "El uso exclusivo de rima consonante",
+  ],
+  correctIndex: 1,
+  poemSnippet: "",
+  author: "",
+  sourcePeriod: "Poesía visual",
+  explanation:
+    "En la poesía visual, la disposición gráfica del texto forma parte esencial del significado.",
+  difficulty: "intermedio",
+},
+{
+  id: 52,
+  category: "Poesía contemporánea",
+  question:
+    "¿Cuál de estas preocupaciones es muy habitual en la poesía contemporánea escrita en castellano?",
+  options: [
+    "La vida de los reyes visigodos",
+    "La experiencia del cuerpo, el género y la identidad",
+    "La física newtoniana",
+    "Las epopeyas caballerescas",
+  ],
+  correctIndex: 1,
+  poemSnippet: "",
+  author: "",
+  sourcePeriod: "Poesía contemporánea",
+  explanation:
+    "Muchos poemas contemporáneos abordan el cuerpo, el género, la identidad y sus tensiones sociales.",
+  difficulty: "intermedio",
+},
+
+{
+  id: 53,
+  category: "Poesía contemporánea",
+  question:
+    "En cierto tipo de poesía contemporánea 'posmoderna', la mezcla de registros cultos y coloquiales sirve para:",
+  options: [
+    "Eliminar toda ironía",
+    "Reforzar una voz única y homogénea",
+    "Cuestionar jerarquías entre lo alto y lo bajo",
+    "Volver al estilo de los cantares de gesta",
+  ],
+  correctIndex: 2,
+  poemSnippet: "",
+  author: "",
+  sourcePeriod: "Poesía posmoderna",
+  explanation:
+    "La mezcla de registros desestabiliza las fronteras entre lo culto y lo popular, lo serio y lo irónico.",
+  difficulty: "avanzado",
+},
+{
+  id: 54,
+  category: "Poesía contemporánea",
+  question:
+    "En la poesía que dialoga con el feminismo contemporáneo, suele cuestionarse:",
+  options: [
+    "Solo la métrica clásica",
+    "Las representaciones tradicionales de género y poder",
+    "La existencia misma de la literatura",
+    "Únicamente la sintaxis oracional",
+  ],
+  correctIndex: 1,
+  poemSnippet: "",
+  author: "",
+  sourcePeriod: "Poesía feminista contemporánea",
+  explanation:
+    "La poesía feminista cuestiona representaciones y estructuras de poder ligadas al género.",
+  difficulty: "avanzado",
+},
+{
+  id: 55,
+  category: "Poesía contemporánea",
+  question:
+    "En algunas propuestas de 'poesía documental', ¿qué se incorpora con frecuencia al poema?",
+  options: [
+    "Solo mitología clásica",
+    "Documentos, datos o materiales de archivo",
+    "Exclusivamente fórmulas métricas medievales",
+    "Canciones infantiles tradicionales",
+  ],
+  correctIndex: 1,
+  poemSnippet: "",
+  author: "",
+  sourcePeriod: "Poesía documental",
+  explanation:
+    "La poesía documental integra materiales no ficcionales (archivos, testimonios, datos) en la composición poética.",
+  difficulty: "avanzado",
+},
+
 ];
 function App() {
   const [screen, setScreen] = useState("home"); // home | quiz | results | ranking
