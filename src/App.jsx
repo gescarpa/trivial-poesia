@@ -1250,7 +1250,11 @@ function HomeScreen({
 }) {
   return (
     <main className="screen">
-      
+      <img
+      src={lopeImg}
+      alt="Lope de Vega"
+      className="lope-hero"
+    />
       <h2>Elige cómo quieres jugar</h2>
 
       <div className="mode-toggle">
@@ -1333,11 +1337,7 @@ function QuizScreen({
 
   return (
     <main className="screen">
-      <img
-      src={lopeImg}
-      alt="Lope de Vega"
-      className="lope-figure"
-    />
+      
       <div className="quiz-header">
         <span className="badge">
           {category} · {question.difficulty}
