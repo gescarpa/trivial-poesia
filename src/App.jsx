@@ -1082,6 +1082,7 @@ function App() {
   const [selectedOption, setSelectedOption] = useState(null);
   const [showFeedback, setShowFeedback] = useState(false);
   const [ranking, setRanking] = useState([]);
+  const [correctByCategory, setCorrectByCategory] = useState({});
 
   useEffect(() => {
     const stored = localStorage.getItem(LOCAL_STORAGE_KEY);
@@ -1107,7 +1108,10 @@ function App() {
 
   function handleStart(category) {
     setSelectedCategory(category);
+    setCorrectByCategory({});
+
     let filtered;
+    
   if (category === "Todas las categorías") {
     // mezcla de todas las categorías, solo por nivel
     filtered = QUESTIONS.filter((q) => q.difficulty === level);
@@ -1130,15 +1134,24 @@ function App() {
 
   function handleOptionClick(index) {
     if (showFeedback || !currentQuestion) return;
+
     setSelectedOption(index);
     setShowFeedback(true);
 
     const isCorrect = index === currentQuestion.correctIndex;
+
     if (mode === "juego" && isCorrect) {
       setCurrentScore((prev) => prev + 10);
     }
     if (isCorrect) {
       setCorrectCount((prev) => prev + 1);
+      setCorrectByCategory((prev) => {
+        const cat = currentQuestion.category;
+        return {
+          ...prev,
+          [cat]: (prev[cat] || 0) + 1,
+        };
+      });
     }
   }
 
@@ -1215,25 +1228,34 @@ function App() {
         />
       )}
 
-      {screen === "results" && (
-        <ResultsScreen
-          mode={mode}
-          score={currentScore}
-          correct={correctCount}
-          total={totalQuestions}
-          category={selectedCategory}
-          onRestart={handleRestart}
-          onSaveRanking={handleSaveRanking}
-          onViewRanking={() => setScreen("ranking")}
-        />
-      )}
+     {screen === "results" && (
+  <ResultsScreen
+    mode={mode}
+    score={currentScore}
+    correct={correctCount}
+    total={totalQuestions}
+    category={selectedCategory}
+    correctByCategory={correctByCategory}
+    onRestart={handleRestart}
+    onSaveRanking={handleSaveRanking}
+    onViewRanking={() => setScreen("ranking")}
+  />
+)}
 
       {screen === "ranking" && (
         <RankingScreen ranking={ranking} onBack={() => setScreen("home")} />
       )}
 
       <footer className="app-footer">
-        <small>POETRIVIAL · Un jueguito de Gonzalo Escarpa</small>
+        <small>POETRIVIAL · Un jueguito de{" "}
+    <a
+      href="https://instagram.com/escarpa"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="footer-link"
+    >
+      Gonzalo Escarpa
+    </a></small>
       </footer>
     </div>
   );
@@ -1421,19 +1443,52 @@ function QuizScreen({
     </main>
   );
 }
+function LearningSummary({ correctByCategory }) {
+  const entries = Object.entries(correctByCategory);
 
+  if (entries.length === 0) {
+    return (
+      <p>
+        Has jugado poco como para sacar conclusiones poéticas. Vuelve a intentarlo.
+      </p>
+    );
+  }
+
+  const sorted = [...entries].sort((a, b) => b[1] - a[1]);
+  const [bestCat] = sorted[0];
+  const worstCat = sorted[sorted.length - 1][0];
+
+  const narrative =
+    sorted.length === 1
+      ? `Has brillado en ${bestCat}.`
+      : `Has brillado en ${bestCat}, te falta afinar en ${worstCat}.`;
+
+  return (
+    <div className="learning-summary">
+      <h3>Resumen de aprendizaje</h3>
+      <ul>
+        {entries.map(([category, count]) => (
+          <li key={category}>
+            Has acertado {count} pregunta{count !== 1 ? "s" : ""} de {category}.
+          </li>
+        ))}
+      </ul>
+      <p className="learning-narrative">{narrative}</p>
+    </div>
+  );
+}
 function ResultsScreen({
   mode,
   score,
   correct,
   total,
   category,
+  correctByCategory,
   onRestart,
   onSaveRanking,
   onViewRanking,
 }) {
   const [name, setName] = useState("");
-
   function handleSave() {
     onSaveRanking(name.trim());
     setName("");
@@ -1450,6 +1505,7 @@ function ResultsScreen({
       </p>
 
       {mode === "juego" && <p>Puntuación total: {score}</p>}
+      <LearningSummary correctByCategory={correctByCategory} />
 
       {mode === "juego" && (
         <div className="ranking-form">
