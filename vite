@@ -1,0 +1,12 @@
+[D[D
+cd ~/trivial-poesia
+git init
+git add .
+git commit -m "Versión inicial del trivial de poesía"
+git branch -M main
+git remote add origin https://github.com/TU_USUARIO/trivial-poesia.git
+git push -u origin main
+
+
+
+

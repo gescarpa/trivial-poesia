@@ -1,0 +1,189 @@
+:root {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background-color: #0f172a;
+  color: #e5e7eb;
+}
+
+body {
+  margin: 0;
+}
+
+.app-container {
+  min-height: 100vh;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-header {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.subtitle {
+  color: #9ca3af;
+  font-size: 0.95rem;
+}
+
+.screen {
+  flex: 1;
+  background: #020617;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+}
+
+.app-footer {
+  margin-top: 1rem;
+  text-align: center;
+  color: #6b7280;
+  font-size: 0.8rem;
+}
+
+.btn {
+  background-color: #4f46e5;
+  color: white;
+  border: none;
+  padding: 0.6rem 1rem;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.btn:hover {
+  background-color: #4338ca;
+}
+
+.btn.secondary {
+  background: transparent;
+  border: 1px solid #4b5563;
+}
+
+.category-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+
+.category-btn {
+  width: 100%;
+  justify-content: flex-start;
+}
+
+.quiz-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: #9ca3af;
+  margin-bottom: 1rem;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.badge {
+  background-color: #111827;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+}
+
+.question-text {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+.options-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.option-btn {
+  background-color: #111827;
+  color: #e5e7eb;
+  border: 1px solid #374151;
+  border-radius: 0.75rem;
+  padding: 0.6rem 0.8rem;
+  text-align: left;
+  cursor: pointer;
+}
+
+.option-btn:hover {
+  background-color: #1f2937;
+}
+
+.option-btn.correct {
+  border-color: #22c55e;
+  background-color: #14532d;
+}
+
+.option-btn.incorrect {
+  border-color: #ef4444;
+  background-color: #7f1d1d;
+}
+
+.feedback {
+  margin-top: 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: 0.75rem;
+  font-size: 0.9rem;
+}
+
+.feedback.ok {
+  background-color: #022c22;
+  border: 1px solid #22c55e;
+}
+
+.feedback.fail {
+  background-color: #450a0a;
+  border: 1px solid #ef4444;
+}
+
+.explanation {
+  color: #e5e7eb;
+  margin-bottom: 0.5rem;
+}
+
+.ranking-form {
+  margin: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.ranking-form input {
+  padding: 0.4rem 0.6rem;
+  border-radius: 999px;
+  border: 1px solid #4b5563;
+  background-color: #020617;
+  color: #e5e7eb;
+}
+
+.results-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.ranking-list {
+  padding-left: 1.2rem;
+}
+
+.rank-position {
+  font-weight: 600;
+}
+
+.rank-name {
+  font-weight: 500;
+}
+
+.rank-score {
+  color: #eab308;
+}
+
+.rank-meta {
+  color: #9ca3af;
+  font-size: 0.85rem;
+}
