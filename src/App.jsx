@@ -1173,9 +1173,9 @@ function App() {
   return (
     <div className="app-container">
       <header className="app-header">
-        <h1>Trivial de Poesía</h1>
+        <h1>POETRIVIAL</h1>
         <p className="subtitle">
-          Juego y taller para navegar por distintas tradiciones poéticas.
+          Pon a prueba tus conocimientos poéticos y deja de creerte Lope de Vega.
         </p>
       </header>
 
@@ -1224,7 +1224,7 @@ function App() {
       )}
 
       <footer className="app-footer">
-        <small>Trivial de poesía · Modo juego / taller</small>
+        <small>POETRIVIAL · Un jueguito de Gonzalo Escarpa</small>
       </footer>
     </div>
   );
@@ -1241,12 +1241,7 @@ function HomeScreen({
 }) {
   return (
     <main className="screen">
-      <div className="progress-bar">
-  <div
-    className="progress-fill"
-    style={{ width: `${((questionIndex + 1) / totalQuestions) * 100}%` }}
-  />
-</div>
+      
       <h2>Elige cómo quieres jugar</h2>
 
       <div className="mode-toggle">
@@ -1339,7 +1334,12 @@ function QuizScreen({
         {mode === "juego" && <span>Puntuación: {score}</span>}
         {mode === "taller" && <span>Modo taller</span>}
       </div>
-
+<div className="progress-bar">
+      <div
+        className="progress-fill"
+        style={{ width: `${((questionIndex + 1) / totalQuestions) * 100}%` }}
+      />
+    </div>
       <h2 className="question-text">{question.question}</h2>
 
       {mode === "taller" && question.poemSnippet && (
