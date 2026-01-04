@@ -1241,6 +1241,12 @@ function HomeScreen({
 }) {
   return (
     <main className="screen">
+      <div className="progress-bar">
+  <div
+    className="progress-fill"
+    style={{ width: `${((questionIndex + 1) / totalQuestions) * 100}%` }}
+  />
+</div>
       <h2>Elige cómo quieres jugar</h2>
 
       <div className="mode-toggle">
