@@ -9,6 +9,7 @@ const CATEGORIES = [
   "Poesía latinoamericana",
   "Poesía escrita por mujeres",
   "Poesía contemporánea",
+  "Todas las categorías",
 ];
 
 const QUESTIONS = [
@@ -1105,9 +1106,16 @@ function App() {
 
   function handleStart(category) {
     setSelectedCategory(category);
-    const filtered = QUESTIONS.filter(
+    let filtered;
+  if (category === "Todas las categorías") {
+    // mezcla de todas las categorías, solo por nivel
+    filtered = QUESTIONS.filter((q) => q.difficulty === level);
+  } else {
+    // comportamiento actual: misma categoría + nivel
+    filtered = QUESTIONS.filter(
       (q) => q.category === category && q.difficulty === level
     );
+  }
     const shuffled = [...filtered].sort(() => Math.random() - 0.5);
 
     setCurrentQuestions(shuffled);
