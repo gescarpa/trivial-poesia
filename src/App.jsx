@@ -1209,6 +1209,208 @@ const QUESTIONS = [
     "Fragmento del poema satírico-filosófico «Hombres necios que acusáis», de Sor Juana Inés de la Cruz, ampliamente accesible en antologías y portales dedicados al Siglo de Oro.",
     difficulty: "avanzado",
 },
+{
+  id: 201,
+  category: "Biografías y anécdotas",
+  difficulty: "básico",
+  question:
+    "¿Qué rasgo de la vida de Emily Dickinson se ha convertido en casi una leyenda sobre su figura?",
+  options: [
+    "Viajó por todo el mundo dando recitales",
+    "Fue una poeta muy mediática en su tiempo",
+    "Vivió casi siempre recluida y publicó muy poco en vida",
+    "Escribía solo en colaboración con otros poetas"
+  ],
+  correctIndex: 2,
+  longExplanation:
+    "Emily Dickinson vivió la mayor parte de su vida en Amherst, en una casa familiar de la que apenas salía, lo que alimentó la imagen de una poeta recluida y casi secreta. Durante su vida publicó muy pocos poemas y casi siempre de manera anónima o muy retocada por los editores; el gran descubrimiento vino después de su muerte, cuando se hallaron cientos de poemas cuidadosamente guardados en cuadernos. Esa tensión entre una vida exterior mínima y una vida interior intensísima ha hecho que su biografía se lea a menudo como el reverso de la figura pública del poeta: en lugar del genio visible y aplaudido, una voz que trabaja en silencio y que solo llega al público cuando ella ya no puede verlo. Trabajar esta anécdota en el taller permite pensar en la relación entre escritura, visibilidad y canon: cuánta poesía ha quedado fuera simplemente porque no encajaba en los circuitos de publicación de su época.",
+  links: [
+    {
+      label: "Breve biografía de Emily Dickinson",
+      url: "https://www.biography.com/authors-writers/emily-dickinson"
+    },
+    {
+      label: "Perfil en Poetry Foundation",
+      url: "https://www.poetryfoundation.org/poets/emily-dickinson"
+    }
+  ],
+  fullPoem:
+    "Because I could not stop for Death –\n" +
+    "He kindly stopped for me –\n" +
+    "The Carriage held but just Ourselves –\n" +
+    "And Immortality.\n\n" +
+    "[Fragmento en inglés del universo dickinsoniano, útil para trabajar tono y ritmo; el poema completo puede consultarse en ediciones críticas y archivos digitales especializados.]",
+  poemSource:
+    "Inicio del poema «Because I could not stop for Death –» de Emily Dickinson, accesible en ediciones en inglés y repositorios de poesía anglosajona."
+},
+{
+  id: 202,
+  category: "Biografías y anécdotas",
+  difficulty: "básico",
+  question:
+    "¿Qué imagen biográfica se asocia con frecuencia a las casas de Pablo Neruda en Chile?",
+  options: [
+    "Eran conventos reconvertidos en bibliotecas silenciosas",
+    "Eran casas llenas de objetos curiosos y vistas al mar",
+    "Eran apartamentos mínimos, casi vacíos",
+    "Eran castillos medievales comprados y restaurados"
+  ],
+  correctIndex: 1,
+  longExplanation:
+    "Las casas de Pablo Neruda en Chile —La Sebastiana en Valparaíso, Isla Negra o La Chascona en Santiago— se han convertido casi en extensiones de su propia figura poética. Están llenas de objetos marinos, mapas, botellas, mascarones de proa y curiosidades que mezclan el gusto por lo popular, lo kitsch y lo exótico. Esa acumulación de cosas no es solo una manía coleccionista: también puede leerse como una poética del detalle y de la mirada, de alguien que quiere rodearse de materiales para contar historias. Visitar o estudiar esas casas permite pensar la poesía no solo como texto, sino como modo de habitar el espacio: el poeta que convierte su vivienda en un escenario, en un gabinete de maravillas donde cada objeto es un posible disparador de imágenes.",
+  links: [
+    {
+      label: "Fundación Pablo Neruda (casas museo)",
+      url: "https://fundacionneruda.org/museos/"
+    },
+    {
+      label: "Reseña biográfica de Pablo Neruda",
+      url: "https://www.poetryfoundation.org/poets/pablo-neruda"
+    }
+  ],
+  fullPoem:
+    "Puedo escribir los versos más tristes esta noche.\n" +
+    "Escribir, por ejemplo: «La noche está estrellada,\n" +
+    "y tiritan, azules, los astros, a lo lejos».\n\n" +
+    "[Fragmento célebre del Poema 20 de «Veinte poemas de amor y una canción desesperada», útil para trabajar el tono elegíaco y la construcción de la imagen amorosa. El texto completo se encuentra en ediciones impresas y recursos digitales autorizados.]",
+  poemSource:
+    "Fragmento del Poema 20 de «Veinte poemas de amor y una canción desesperada», de Pablo Neruda."
+},
+{
+  id: 203,
+  category: "Biografías y anécdotas",
+  difficulty: "básico",
+  question:
+    "¿Qué combinación de elementos define bien la figura pública de Federico García Lorca en los años 30?",
+  options: [
+    "Poeta de escritorio que apenas sale de Granada",
+    "Poeta y conferenciante que recita y actúa sus textos",
+    "Poeta completamente ajeno al teatro y a la música",
+    "Poeta que solo publica anónimamente"
+  ],
+  correctIndex: 1,
+  longExplanation:
+    "En los años 30, Lorca no es solo el autor de libros como el «Romancero gitano» o «Poeta en Nueva York»: también es un gran comunicador en escena. Sus conferencias-recital mezclan explicación, humor, canto y recitación; y su trabajo con el grupo teatral universitario La Barraca lo lleva a pueblos donde el teatro clásico apenas había llegado. Esa presencia performativa hace que mucha gente lo recuerde tanto por su voz y su manera de decir los poemas como por los textos en el papel. Traer esta dimensión al taller ayuda a pensar la poesía como acto vivo: cómo cambia un poema cuando se imagina dicho en voz alta, con un cuerpo concreto y ante un público concreto.",
+  links: [
+    {
+      label: "Conferencia-recital sobre el Romancero gitano",
+      url: "https://monicatello.es/conferencia-recital-del-romancero-gitano"
+    },
+    {
+      label: "Lorca en la Biblioteca Nacional de España",
+      url: "https://www.bne.es/es/autores/garcia-lorca-federico"
+    }
+  ],
+  fullPoem:
+    "La luna vino a la fragua\n" +
+    "con su polisón de nardos.\n" +
+    "El niño la mira mira.\n" +
+    "El niño la está mirando.\n\n" +
+    "[Fragmento del «Romance de la luna, luna» del «Romancero gitano», útil para trabajar símbolo, musicalidad y oralidad. El poema completo puede consultarse en ediciones de la obra de Lorca y recursos digitales especializados.]",
+  poemSource:
+    "Fragmento del «Romance de la luna, luna», del Romancero gitano de Federico García Lorca."
+},
+{
+  id: 204,
+  category: "Biografías y anécdotas",
+  difficulty: "intermedio",
+  question:
+    "¿Qué idea central recorre la famosa «Respuesta a Sor Filotea» de Sor Juana Inés de la Cruz?",
+  options: [
+    "El rechazo absoluto de la teología",
+    "La defensa del derecho de las mujeres a estudiar",
+    "La afirmación de que la poesía debe ser solo religiosa",
+    "La renuncia definitiva a la escritura"
+  ],
+  correctIndex: 1,
+  longExplanation:
+    "La «Respuesta a Sor Filotea» es un texto en el que Sor Juana aprovecha una amonestación para desplegar una defensa apasionada del deseo de saber, especialmente en las mujeres. Recorre su propia biografía intelectual, recoge anécdotas de infancia y muestra cómo la lectura y el estudio han sido para ella una forma de vocación, no un capricho. Al mismo tiempo, tiene que moverse con cautela dentro de un marco eclesiástico y patriarcal: justifica su curiosidad como parte del servicio a Dios, pero deja claro que prohibirle estudiar sería ir contra los talentos que se le han dado. Trabajar este texto en el taller permite conectar biografía, género y retórica: cómo una autora negocia con las voces de autoridad de su tiempo mientras defiende una forma radical de libertad intelectual.",
+  links: [
+    {
+      label: "Texto de la «Respuesta a Sor Filotea»",
+      url: "https://web.seducoahuila.gob.mx/biblioweb/upload/RESPUESTA%20A%20SOR%20FILOTEA.pdf"
+    },
+    {
+      label: "Artículo sobre Sor Juana y la defensa del saber",
+      url: "https://revistaliterariaelcandelabro.blog/2025/07/respuesta-sor-filotea-defensa-feminista-barroco/"
+    }
+  ],
+  fullPoem:
+    "Esta tarde, mi bien, cuando te hablaba,\n" +
+    "como en tu rostro y tus acciones vía\n" +
+    "que con palabras no te persuadía,\n" +
+    "que el corazón me vieses deseaba.\n\n" +
+    "[Fragmento de un soneto amoroso de Sor Juana, útil para leer la tensión entre inteligencia, afecto y juego retórico. El poema completo y otros textos pueden consultarse en ediciones de su poesía completa.]",
+  poemSource:
+    "Fragmento de un soneto amoroso de Sor Juana Inés de la Cruz, presente en sus obras poéticas completas."
+},
+{
+  id: 205,
+  category: "Biografías y anécdotas",
+  difficulty: "intermedio",
+  question:
+    "¿Qué episodio vital marcó la imagen de César Vallejo como poeta atravesado por la injusticia y el exilio?",
+  options: [
+    "Su encarcelamiento en Perú y posterior vida en Europa",
+    "Su carrera militar en la Primera Guerra Mundial",
+    "Su etapa como diplomático en Estados Unidos",
+    "Su retiro silencioso en un monasterio andino"
+  ],
+  correctIndex: 0,
+  longExplanation:
+    "César Vallejo fue encarcelado en Perú en circunstancias polémicas, acusado de participar en disturbios de los que su responsabilidad real sigue siendo discutida por la crítica. Ese paso por la cárcel, sumado a la pobreza y al exilio posterior en Europa, ha alimentado la imagen de un poeta muy consciente de la violencia social y de la injusticia histórica. En libros como «Trilce» o «Poemas humanos» la experimentación formal extrema convive con una sensibilidad aguda hacia el sufrimiento colectivo, la precariedad y la fragilidad del cuerpo. Llevar esta anécdota biográfica al taller permite trabajar la relación entre biografía y voz poética sin reducir los poemas a “diario íntimo”: cómo una experiencia concreta puede transformarse en una tensión de lenguaje que ya no pertenece solo al yo del autor.",
+  links: [
+    {
+      label: "Perfil biográfico de César Vallejo",
+      url: "https://www.poetryfoundation.org/poets/cesar-vallejo"
+    },
+    {
+      label: "Breve introducción a la obra de Vallejo",
+      url: "https://www.britannica.com/biography/Cesar-Vallejo"
+    }
+  ],
+  fullPoem:
+    "Me moriré en París con aguacero,\n" +
+    "un día del cual tengo ya el recuerdo.\n" +
+    "Me moriré en París —y no me corro—,\n" +
+    "tal vez un jueves, como es hoy, de otoño.\n\n" +
+    "[Fragmento de «Piedra negra sobre una piedra blanca», donde la conciencia de muerte y desplazamiento condensa biografía y visión del mundo. El poema completo se encuentra en ediciones de «Poemas humanos».]",
+  poemSource:
+    "Fragmento de «Piedra negra sobre una piedra blanca», de César Vallejo."
+},
+{
+  id: 206,
+  category: "Biografías y anécdotas",
+  difficulty: "intermedio",
+  question:
+    "¿Por qué la figura de Sylvia Plath suele aparecer ligada a la etiqueta de 'poesía confesional'?",
+  options: [
+    "Porque solo escribió autobiografías en prosa",
+    "Porque sus poemas borran cualquier referencia personal",
+    "Porque integra de forma explícita su vida íntima y su malestar psíquico en la poesía",
+    "Porque nunca publicó en vida y todo se descubrió después"
+  ],
+  correctIndex: 2,
+  longExplanation:
+    "Sylvia Plath es una de las figuras centrales de lo que se ha llamado 'poesía confesional' en el contexto anglosajón: una escritura que incorpora la experiencia íntima, el conflicto psíquico, la familia y el trauma en el centro del poema. Libros como «Ariel» contienen textos donde la voz poética se expone con una intensidad extrema, entre la denuncia y la autodestrucción, y eso ha hecho que su biografía —incluido su suicidio— se lea muchas veces de forma morbosa. En el taller, la anécdota biográfica sirve para abrir preguntas más complejas: cómo leer estos poemas sin reducirlos a documento clínico, cómo distinguir entre el yo biográfico y el yo textual, y qué significa escribir sobre el propio dolor sin que el poema se cierre en la pura autorreferencia.",
+  links: [
+    {
+      label: "Biografía de Sylvia Plath",
+      url: "https://www.biography.com/authors-writers/sylvia-plath"
+    },
+    {
+      label: "Perfil en Poetry Foundation",
+      url: "https://www.poetryfoundation.org/poets/sylvia-plath"
+    }
+  ],
+  fullPoem:
+    "I am silver and exact. I have no preconceptions.\n" +
+    "Whatever I see I swallow immediately\n" +
+    "Just as it is, unmisted by love or dislike.\n\n" +
+    "[Fragmento del poema «Mirror» (Espejo), útil para trabajar la relación entre mirada, identidad y autoimagen. El texto completo puede consultarse en ediciones de su poesía y recursos digitales especializados.]",
+  poemSource:
+    "Fragmento del poema «Mirror», de Sylvia Plath."
+},
 ];
 function App() {
   const [screen, setScreen] = useState("home"); // home | quiz | results | ranking
