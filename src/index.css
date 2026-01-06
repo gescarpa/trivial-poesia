@@ -452,5 +452,12 @@ body {
 }
 .app-logo {
   height: 192px;
-  margin-bottom: 0.1rem;
+  margin-bottom: 0rem;
+display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.subtitle {
+  margin-top: 0;           /* elimina margen superior por defecto del <p> */
 }
