@@ -429,3 +429,24 @@ body {
 .learning-narrative {
   font-style: italic;
 }
+.resource-links {
+  margin-top: 0.75rem;
+  padding-left: 1.25rem;
+  list-style: disc;
+}
+
+.resource-links li {
+  margin-bottom: 0.25rem;
+}
+
+.resource-links a {
+  color: #a5b4fc;          /* tono claro/violeta */
+  text-decoration: underline;
+  text-decoration-color: #6366f1;
+  text-underline-offset: 2px;
+  font-size: 0.9rem;
+}
+
+.resource-links a:hover {
+  color: #e5e7eb;
+}
