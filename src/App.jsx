@@ -1113,7 +1113,8 @@ const QUESTIONS = [
     "[...] (En el modo taller, invita a leer el 'Cántico espiritual' completo en la edición enlazada.)",
 
   poemSource:
-    "Fragmento inicial del 'Cántico espiritual' de San Juan de la Cruz en liras; puede leerse completo en diversas ediciones y repositorios en línea como Mercaba o ediciones críticas accesibles en PDF."
+    "Fragmento inicial del 'Cántico espiritual' de San Juan de la Cruz en liras; puede leerse completo en diversas ediciones y repositorios en línea como Mercaba o ediciones críticas accesibles en PDF.",
+    difficulty: "avanzado",
 },
 {
   id: 102,
@@ -1158,7 +1159,8 @@ const QUESTIONS = [
     "[Fragmento del universo lorquiano en «Romance sonámbulo». Para el texto completo del poema y del «Romancero gitano», consulta ediciones autorizadas y recursos especializados en línea.]",
 
   poemSource:
-    "Fragmento célebre de «Romance sonámbulo», del Romancero gitano de Federico García Lorca. El texto completo puede leerse en ediciones impresas y en recursos digitales dedicados a la obra lorquiana."
+    "Fragmento célebre de «Romance sonámbulo», del Romancero gitano de Federico García Lorca. El texto completo puede leerse en ediciones impresas y en recursos digitales dedicados a la obra lorquiana.",
+    difficulty: "avanzado",
 },
 {
   id: 103,
@@ -1203,7 +1205,8 @@ const QUESTIONS = [
     "[Fragmento inicial del poema «Hombres necios que acusáis», donde Sor Juana denuncia la doble moral masculina. El texto completo puede leerse en recursos especializados y ediciones críticas de su obra.]",
 
   poemSource:
-    "Fragmento del poema satírico-filosófico «Hombres necios que acusáis», de Sor Juana Inés de la Cruz, ampliamente accesible en antologías y portales dedicados al Siglo de Oro."
+    "Fragmento del poema satírico-filosófico «Hombres necios que acusáis», de Sor Juana Inés de la Cruz, ampliamente accesible en antologías y portales dedicados al Siglo de Oro.",
+    difficulty: "avanzado",
 },
 ];
 function App() {
