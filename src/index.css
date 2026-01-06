@@ -450,3 +450,7 @@ body {
 .resource-links a:hover {
   color: #e5e7eb;
 }
+.app-logo {
+  height: 64px;
+  margin-bottom: 0.5rem;
+}
