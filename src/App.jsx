@@ -1602,22 +1602,6 @@ function QuizScreen({
     ))}
   </ul>
 )}
-
-        {question.links && question.links.length > 0 && (
-          <ul className="resource-links">
-            {question.links.map((link) => (
-              <li key={link.url}>
-                <a
-                  href={link.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {link.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-        )}
       </div>
     )}
 
