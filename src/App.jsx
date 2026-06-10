@@ -1951,7 +1951,7 @@ const QUESTIONS = [
   {
     id: 339,
     category: "Poesía contemporánea",
-    question: "¿Qué poeta español, fallecido en 2021 y premio Cervantes 2006, escribió «Descripción de la mentira» y «Libro del frío»?",
+    question: "¿Qué poeta español, felizmente aún en activo, premio Cervantes 2006, escribió «Descripción de la mentira» y «Libro del frío»?",
     options: ["Antonio Gamoneda", "Pere Gimferrer", "Claudio Rodríguez", "Ángel González"],
     correctIndex: 0,
     poemSnippet: "",
