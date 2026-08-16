@@ -1,10 +1,11 @@
-export const BIOGRAFIA_202_META = {
+export const NERUDA_META = {
   id: 202,
-  longExplanation: "Las casas de Pablo Neruda en Chile —La Sebastiana en Valparaíso, Isla Negra o La Chascona en Santiago— se han convertido casi en extensiones de su propia figura poética. Están llenas de objetos marinos, mapas, botellas, mascarones de proa y curiosidades que mezclan el gusto por lo popular, lo kitsch y lo exótico. Esa acumulación de cosas no es solo una manía coleccionista: también puede leerse como una poética del detalle y de la mirada, de alguien que quiere rodearse de materiales para contar historias. Visitar o estudiar esas casas permite pensar la poesía no solo como texto, sino como modo de habitar el espacio: el poeta que convierte su vivienda en un escenario, en un gabinete de maravillas donde cada objeto es un posible disparador de imágenes.",
+  title: "Pablo Neruda",
+  fullAnswer: "Pablo Neruda (1904-1973) fue un poeta y diplomtico chileno, ganador del Premio Nobel de Literatura en 1971. Su obra abarca desde el vanguardismo hasta la poesa poltica y amorosa. Es conocido por colecciones como 'Veinte poemas de amor y una cancin desesperada' y 'Canto general'.",
+  poemFragment: "Puedo escribir los versos ms tristes esta noche.\nEscribir, por ejemplo: \"La noche est estrellada,\ny tiritan, azules, los astros, a lo lejos.\"",
+  source: "Veinte poemas de amor y una cancin desesperada, poema 1",
   links: [
-    { label: "Fundación Pablo Neruda (casas museo)", url: "https://fundacionneruda.org/museos/" },
-    { label: "Reseña biográfica de Pablo Neruda", url: "https://www.poetryfoundation.org/poets/pablo-neruda" },
-  ],
+    { label: "Biografa en NobelPrize.org", url: "https://www.nobelprize.org/prizes/literature/1971/neruda/facts/" },
+    { label: "Poema completo en Poetry Foundation", url: "https://www.poetryfoundation.org/poems/46079/puedo-escribir-los-versos-mas-tristes" }
+  ]
 };
-
-export default BIOGRAFIA_202_META;
