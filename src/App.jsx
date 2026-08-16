@@ -4,7 +4,19 @@ import lopeImg from "./assets/lope.png";
 import logoImg from "./assets/logo.png";
 import { QUESTIONS as BASE_QUESTIONS, CATEGORIES } from "./data/questions";
 import { MAS_BIOGRAFIAS } from "./data/masBiografias";
+import { BIOGRAFIAS_METAS } from "./data/biografias/index.js";
 
+function mergeQuestionWithMeta(question) {
+  const meta = BIOGRAFIAS_METAS[question.id];
+  if (!meta) return question;
+  return {
+    ...question,
+    longExplanation: meta.fullAnswer || question.longExplanation,
+    links: meta.links || question.links,
+    fullPoem: meta.poemFragment || question.fullPoem,
+    poemSource: meta.source || question.poemSource,
+  };
+}
 const LOCAL_STORAGE_KEY = "trivial-poesia-ranking";
 
 const QUESTIONS = [...BASE_QUESTIONS, ...MAS_BIOGRAFIAS];
@@ -43,7 +55,7 @@ function App() {
     () => currentQuestions[currentIndex],
     [currentQuestions, currentIndex]
   );
-
+const mergedQuestion = mergeQuestionWithMeta(currentQuestion);
   function handleStart(category) {
     setSelectedCategory(category);
     setCorrectByCategory({});
@@ -360,15 +372,15 @@ function QuizScreen({
 
           {mode === "taller" && (
             <div className="meta-block">
-              {question.longExplanation && (
-                <p className="explanation">{question.longExplanation}</p>
+              {mergedQuestion.longExplanation && (
+                <p className="explanation">{mergedQuestion.longExplanation}</p>
               )}
-              {question.fullPoem && (
-                <pre className="poem-snippet">{question.fullPoem}</pre>
+              {mergedQuestion.fullPoem && (
+                <pre className="poem-snippet">{mergedQuestion.fullPoem}</pre>
               )}
-              {question.links && question.links.length > 0 && (
+              {mergedQuestion.links && mergedQuestion.links.length > 0 && (
                 <ul className="resource-links">
-                  {question.links.map((link) => (
+                  {mergedQuestion.links.map((link) => (
                     <li key={link.url}>
                       <a
                         href={link.url}
