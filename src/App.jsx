@@ -32,12 +32,18 @@ function saveRanking(ranking) {
   localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(ranking));
 }
 
+function resolvePlayerName(name, fallback) {
+  return name.trim() || fallback;
+}
+
 function App() {
   const [screen, setScreen] = useState("home");
   const [mode, setMode] = useState("juego");
   const [level, setLevel] = useState("básico");
   const [roundCount, setRoundCount] = useState(10);
   const [selectedCategory, setSelectedCategory] = useState(null);
+  const [player1Name, setPlayer1Name] = useState("");
+  const [player2Name, setPlayer2Name] = useState("");
 
   // Modo solo (juego / taller)
   const [currentQuestions, setCurrentQuestions] = useState([]);
@@ -74,6 +80,8 @@ function App() {
   }, [twoPlayerPool, currentRound, turn]);
 
   const isTurnActive = screen === "quiz2p" && !handoffTarget && !showFeedback2p;
+  const p1Name = resolvePlayerName(player1Name, "Jugador 1");
+  const p2Name = resolvePlayerName(player2Name, "Jugador 2");
 
   function persistRanking(updated) {
     setRanking(updated);
@@ -256,9 +264,13 @@ function App() {
           mode={mode}
           level={level}
           roundCount={roundCount}
+          player1Name={player1Name}
+          player2Name={player2Name}
           onModeChange={setMode}
           onLevelChange={setLevel}
           onRoundCountChange={setRoundCount}
+          onPlayer1NameChange={setPlayer1Name}
+          onPlayer2NameChange={setPlayer2Name}
           onStart={handleCategorySelect}
           onViewRanking={() => setScreen("ranking")}
         />
@@ -294,7 +306,10 @@ function App() {
       )}
 
       {screen === "quiz2p" && handoffTarget && (
-        <HandoffScreen player={handoffTarget} onContinue={handleHandoffContinue} />
+        <HandoffScreen
+          playerName={handoffTarget === "p1" ? p1Name : p2Name}
+          onContinue={handleHandoffContinue}
+        />
       )}
 
       {screen === "quiz2p" && !handoffTarget && currentTwoPlayerQuestion && (
@@ -302,6 +317,8 @@ function App() {
           category={selectedCategory}
           question={currentTwoPlayerQuestion}
           turn={turn}
+          p1Name={p1Name}
+          p2Name={p2Name}
           round={currentRound}
           totalRounds={roundsActual}
           scoreP1={scoreP1}
@@ -317,6 +334,8 @@ function App() {
       {screen === "results2p" && (
         <ResultsTwoPlayerScreen
           category={selectedCategory}
+          p1Name={p1Name}
+          p2Name={p2Name}
           totalRounds={roundsActual}
           scoreP1={scoreP1}
           scoreP2={scoreP2}
@@ -350,9 +369,13 @@ function HomeScreen({
   mode,
   level,
   roundCount,
+  player1Name,
+  player2Name,
   onModeChange,
   onLevelChange,
   onRoundCountChange,
+  onPlayer1NameChange,
+  onPlayer2NameChange,
   onStart,
   onViewRanking,
 }) {
@@ -390,6 +413,31 @@ function HomeScreen({
         {mode === "2jugadores" &&
           "Os pasáis el dispositivo: cada ronda responde primero el Jugador 1 y luego el Jugador 2 a una pregunta distinta. Gana quien acierte más."}
       </p>
+
+      {mode === "2jugadores" && (
+        <div className="player-names">
+          <label>
+            Nombre del Jugador 1
+            <input
+              type="text"
+              placeholder="Jugador 1"
+              maxLength={20}
+              value={player1Name}
+              onChange={(e) => onPlayer1NameChange(e.target.value)}
+            />
+          </label>
+          <label>
+            Nombre del Jugador 2
+            <input
+              type="text"
+              placeholder="Jugador 2"
+              maxLength={20}
+              value={player2Name}
+              onChange={(e) => onPlayer2NameChange(e.target.value)}
+            />
+          </label>
+        </div>
+      )}
 
       <h3>Nivel de dificultad</h3>
       <div className="mode-toggle">
@@ -573,13 +621,13 @@ function QuizScreen({
   );
 }
 
-function HandoffScreen({ player, onContinue }) {
-  const playerLabel = player === "p1" ? "Jugador 1" : "Jugador 2";
+function HandoffScreen({ playerName, onContinue }) {
   return (
     <main className="screen handoff-screen">
-      <h2>Pasa el dispositivo a {playerLabel}</h2>
+      <h2>Pasa el dispositivo a {playerName}</h2>
       <p className="mode-description">
-        Cuando {playerLabel} esté listo, pulsa continuar para ver su pregunta.
+        Cuando {playerName} esté listo o lista, pulsa continuar para ver su
+        pregunta.
       </p>
       <button className="btn" onClick={onContinue}>
         Continuar
@@ -592,6 +640,8 @@ function TwoPlayerQuizScreen({
   category,
   question,
   turn,
+  p1Name,
+  p2Name,
   round,
   totalRounds,
   scoreP1,
@@ -607,7 +657,7 @@ function TwoPlayerQuizScreen({
     !timedOut &&
     selectedOption !== null &&
     selectedOption === question.correctIndex;
-  const playerLabel = turn === "p1" ? "Jugador 1" : "Jugador 2";
+  const playerLabel = turn === "p1" ? p1Name : p2Name;
   const isLastTurn = turn === "p2" && round + 1 === totalRounds;
   const timeUrgent = timeLeft <= 10;
 
@@ -622,8 +672,8 @@ function TwoPlayerQuizScreen({
       </div>
 
       <div className="score-row">
-        <span>Jugador 1: {scoreP1}</span>
-        <span>Jugador 2: {scoreP2}</span>
+        <span>{p1Name}: {scoreP1}</span>
+        <span>{p2Name}: {scoreP2}</span>
       </div>
 
       <div className="timer-row">
@@ -678,7 +728,7 @@ function TwoPlayerQuizScreen({
           </p>
           <button className="btn" onClick={onNext}>
             {turn === "p1"
-              ? "Pasar turno a Jugador 2"
+              ? `Pasar turno a ${p2Name}`
               : isLastTurn
               ? "Ver resultados finales"
               : "Siguiente ronda"}
@@ -689,10 +739,18 @@ function TwoPlayerQuizScreen({
   );
 }
 
-function ResultsTwoPlayerScreen({ category, totalRounds, scoreP1, scoreP2, onRestart }) {
+function ResultsTwoPlayerScreen({
+  category,
+  p1Name,
+  p2Name,
+  totalRounds,
+  scoreP1,
+  scoreP2,
+  onRestart,
+}) {
   let winnerText;
-  if (scoreP1 > scoreP2) winnerText = "¡Gana el Jugador 1!";
-  else if (scoreP2 > scoreP1) winnerText = "¡Gana el Jugador 2!";
+  if (scoreP1 > scoreP2) winnerText = `¡Gana ${p1Name}!`;
+  else if (scoreP2 > scoreP1) winnerText = `¡Gana ${p2Name}!`;
   else winnerText = "¡Empate!";
 
   return (
@@ -702,8 +760,8 @@ function ResultsTwoPlayerScreen({ category, totalRounds, scoreP1, scoreP2, onRes
         Categoría: <strong>{category}</strong> · {totalRounds} rondas
       </p>
       <div className="score-row">
-        <span>Jugador 1: {scoreP1} / {totalRounds}</span>
-        <span>Jugador 2: {scoreP2} / {totalRounds}</span>
+        <span>{p1Name}: {scoreP1} / {totalRounds}</span>
+        <span>{p2Name}: {scoreP2} / {totalRounds}</span>
       </div>
       <p className="learning-narrative">{winnerText}</p>
 
