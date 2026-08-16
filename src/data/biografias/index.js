@@ -1,4 +1,5 @@
 // Índice de metas de biografias detalladas
+import { BIOGRAFIAS_DETALLADAS_A } from '../biografiasDetalladasA.js';
 import { BIOGRAFIA_201 } from './201-dickinson.js';
 import { NERUDA_META } from './202-neruda-meta.js';
 import { LORCA_META } from './203-lorca-meta.js';
@@ -13,6 +14,7 @@ import { SORJUANA_RENUNCIA_META } from './344-sorjuana-renuncia-meta.js';
 import { BECQUER_PERIODISTA_META } from './345-becquer-periodista-meta.js';
 
 export const BIOGRAFIAS_METAS = {
+  ...BIOGRAFIAS_DETALLADAS_A,
   [BIOGRAFIA_201.id]: BIOGRAFIA_201,
   [NERUDA_META.id]: NERUDA_META,
   [LORCA_META.id]: LORCA_META,
