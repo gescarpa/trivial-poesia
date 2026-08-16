@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import "./index.css";
 import lopeImg from "./assets/lope.png";
 import logoImg from "./assets/logo.png";
@@ -6,6 +6,7 @@ import { QUESTIONS, CATEGORIES } from "./data";
 
 const LOCAL_STORAGE_KEY = "trivial-poesia-ranking";
 const ROUND_OPTIONS = [5, 10, 15];
+const TURN_SECONDS = 60;
 
 function shuffle(list) {
   return [...list].sort(() => Math.random() - 0.5);
@@ -58,6 +59,8 @@ function App() {
   const [scoreP2, setScoreP2] = useState(0);
   const [selectedOption2p, setSelectedOption2p] = useState(null);
   const [showFeedback2p, setShowFeedback2p] = useState(false);
+  const [timeLeft, setTimeLeft] = useState(TURN_SECONDS);
+  const [lastTurnKey, setLastTurnKey] = useState(null);
 
   const totalQuestions = currentQuestions.length;
   const currentQuestion = useMemo(
@@ -69,6 +72,8 @@ function App() {
     const offset = turn === "p1" ? 0 : 1;
     return twoPlayerPool[currentRound * 2 + offset];
   }, [twoPlayerPool, currentRound, turn]);
+
+  const isTurnActive = screen === "quiz2p" && !handoffTarget && !showFeedback2p;
 
   function persistRanking(updated) {
     setRanking(updated);
@@ -168,6 +173,27 @@ function App() {
     }
   }
 
+  const turnKey = `${currentRound}-${turn}`;
+  if (screen === "quiz2p" && !handoffTarget && turnKey !== lastTurnKey) {
+    setLastTurnKey(turnKey);
+    setTimeLeft(TURN_SECONDS);
+  }
+
+  useEffect(() => {
+    if (!isTurnActive || timeLeft <= 0) return;
+    const id = setTimeout(() => setTimeLeft((t) => t - 1), 1000);
+    return () => clearTimeout(id);
+  }, [isTurnActive, timeLeft]);
+
+  useEffect(() => {
+    if (!isTurnActive || timeLeft !== 0) return;
+    const id = setTimeout(() => {
+      setSelectedOption2p(-1);
+      setShowFeedback2p(true);
+    }, 0);
+    return () => clearTimeout(id);
+  }, [isTurnActive, timeLeft]);
+
   function handleNext2P() {
     if (turn === "p1") {
       setHandoffTarget("p2");
@@ -210,6 +236,8 @@ function App() {
     setScoreP2(0);
     setSelectedOption2p(null);
     setShowFeedback2p(false);
+    setTimeLeft(TURN_SECONDS);
+    setLastTurnKey(null);
   }
 
   return (
@@ -280,6 +308,7 @@ function App() {
           scoreP2={scoreP2}
           selectedOption={selectedOption2p}
           showFeedback={showFeedback2p}
+          timeLeft={timeLeft}
           onOptionClick={handleOption2PClick}
           onNext={handleNext2P}
         />
@@ -569,13 +598,18 @@ function TwoPlayerQuizScreen({
   scoreP2,
   selectedOption,
   showFeedback,
+  timeLeft,
   onOptionClick,
   onNext,
 }) {
+  const timedOut = selectedOption === -1;
   const isCorrect =
-    selectedOption !== null && selectedOption === question.correctIndex;
+    !timedOut &&
+    selectedOption !== null &&
+    selectedOption === question.correctIndex;
   const playerLabel = turn === "p1" ? "Jugador 1" : "Jugador 2";
   const isLastTurn = turn === "p2" && round + 1 === totalRounds;
+  const timeUrgent = timeLeft <= 10;
 
   return (
     <main className="screen">
@@ -590,6 +624,18 @@ function TwoPlayerQuizScreen({
       <div className="score-row">
         <span>Jugador 1: {scoreP1}</span>
         <span>Jugador 2: {scoreP2}</span>
+      </div>
+
+      <div className="timer-row">
+        <span className={timeUrgent ? "timer-text urgent" : "timer-text"}>
+          {timeLeft}s
+        </span>
+        <div className="timer-bar">
+          <div
+            className={timeUrgent ? "timer-fill urgent" : "timer-fill"}
+            style={{ width: `${(timeLeft / 60) * 100}%` }}
+          />
+        </div>
       </div>
 
       <div className="progress-bar">
@@ -623,7 +669,13 @@ function TwoPlayerQuizScreen({
 
       {showFeedback && (
         <div className={`feedback ${isCorrect ? "ok" : "fail"}`}>
-          <p>{isCorrect ? "¡Correcto!" : "Respuesta incorrecta."}</p>
+          <p>
+            {isCorrect
+              ? "¡Correcto!"
+              : timedOut
+              ? "Se acabó el tiempo."
+              : "Respuesta incorrecta."}
+          </p>
           <button className="btn" onClick={onNext}>
             {turn === "p1"
               ? "Pasar turno a Jugador 2"

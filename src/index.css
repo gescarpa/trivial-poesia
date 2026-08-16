@@ -362,6 +362,11 @@ body {
     font-size: 1.7rem;
   }
 
+  .app-logo {
+    height: auto;
+    width: 85%;
+  }
+
   .question-text {
     font-size: 1.05rem;
   }
@@ -389,9 +394,9 @@ body {
 /* Ajuste en móvil */
 @media (max-width: 600px) {
   .lope-hero {
-    right: -5px;
-    top: -30px;
-    width: 110px;
+    right: 0;
+    top: -68px;
+    width: 78px;
   }
 }
 .footer-link {
@@ -452,6 +457,8 @@ body {
 }
 .app-logo {
   height: 160px;
+  max-width: 100%;
+  width: auto;
   margin-bottom: 0rem;
 display: block;
   margin-left: auto;
@@ -476,6 +483,45 @@ display: block;
   font-size: 0.85rem;
   color: #9ca3af;
   margin-bottom: 0.75rem;
+}
+
+.timer-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.75rem;
+}
+
+.timer-text {
+  font-size: 0.8rem;
+  color: #9ca3af;
+  min-width: 2.2rem;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.timer-text.urgent {
+  color: #ef4444;
+  font-weight: 600;
+}
+
+.timer-bar {
+  flex: 1;
+  height: 6px;
+  border-radius: 999px;
+  background: #020617;
+  overflow: hidden;
+  border: 1px solid #1f2937;
+}
+
+.timer-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #22c55e, #eab308);
+  transition: width 1s linear, background 0.3s ease;
+}
+
+.timer-fill.urgent {
+  background: #ef4444;
 }
 
 .handoff-screen {
