@@ -156,11 +156,11 @@ const mergedQuestion = mergeQuestionWithMeta(currentQuestion);
         />
       )}
 
-      {screen === "quiz" && currentQuestion && (
-        <QuizScreen
-          mode={mode}
-          category={selectedCategory}
-          question={currentQuestion}
+      {screen === "quiz" && mergedQuestion && (
+  <QuizScreen
+    mode={mode}
+    category={selectedCategory}
+    question={mergedQuestion}
           questionIndex={currentIndex}
           totalQuestions={totalQuestions}
           score={currentScore}
