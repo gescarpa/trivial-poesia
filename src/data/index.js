@@ -5,6 +5,7 @@
 import { QUESTIONS as BASE_QUESTIONS, CATEGORIES } from "./questions";
 import { MAS_BIOGRAFIAS } from "./masBiografias";
 import { BIOGRAFIAS_EXTRA } from "./biografiasExtra";
+import { POESIA_EXPANSION } from "./poesiaExpansion";
 import { BIOGRAFIAS_METAS } from "./biografias/index.js";
 
 function withMeta(question) {
@@ -24,6 +25,7 @@ export const QUESTIONS = [
   ...BASE_QUESTIONS,
   ...MAS_BIOGRAFIAS,
   ...BIOGRAFIAS_EXTRA,
+  ...POESIA_EXPANSION,
 ].map(withMeta);
 
 export { CATEGORIES };
