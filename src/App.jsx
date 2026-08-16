@@ -7,14 +7,17 @@ import { MAS_BIOGRAFIAS } from "./data/masBiografias";
 import { BIOGRAFIAS_METAS } from "./data/biografias/index.js";
 
 function mergeQuestionWithMeta(question) {
+  if (!question) return question;
+
   const meta = BIOGRAFIAS_METAS[question.id];
   if (!meta) return question;
+
   return {
     ...question,
-    longExplanation: meta.fullAnswer || question.longExplanation,
+    longExplanation: meta.longExplanation || meta.fullAnswer || question.longExplanation,
     links: meta.links || question.links,
-    fullPoem: meta.poemFragment || question.fullPoem,
-    poemSource: meta.source || question.poemSource,
+    fullPoem: meta.fullPoem || meta.poemFragment || question.fullPoem,
+    poemSource: meta.poemSource || meta.source || question.poemSource,
   };
 }
 const LOCAL_STORAGE_KEY = "trivial-poesia-ranking";
