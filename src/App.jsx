@@ -55,7 +55,7 @@ function App() {
   const [correctCount, setCorrectCount] = useState(0);
   const [selectedOption, setSelectedOption] = useState(null);
   const [showFeedback, setShowFeedback] = useState(false);
-  const [correctByCategory, setCorrectByCategory] = useState({});
+  const [statsByCategory, setStatsByCategory] = useState({});
   const [ranking, setRanking] = useState(loadRanking);
 
   // Modo 2 jugadores
@@ -93,7 +93,7 @@ function App() {
 
   function handleStart(category) {
     setSelectedCategory(category);
-    setCorrectByCategory({});
+    setStatsByCategory({});
     const filtered = filterQuestions(category, level);
     const shuffled = shuffle(filtered).slice(0, roundCount);
     setCurrentQuestions(shuffled);
@@ -158,11 +158,18 @@ function App() {
     }
     if (isCorrect) {
       setCorrectCount((prev) => prev + 1);
-      setCorrectByCategory((prev) => {
-        const cat = currentQuestion.category;
-        return { ...prev, [cat]: (prev[cat] || 0) + 1 };
-      });
     }
+    setStatsByCategory((prev) => {
+      const cat = currentQuestion.category;
+      const prevStats = prev[cat] || { correct: 0, total: 0 };
+      return {
+        ...prev,
+        [cat]: {
+          correct: prevStats.correct + (isCorrect ? 1 : 0),
+          total: prevStats.total + 1,
+        },
+      };
+    });
   }
 
   function handleNextQuestion() {
@@ -346,7 +353,7 @@ function App() {
           correct={correctCount}
           total={totalQuestions}
           category={selectedCategory}
-          correctByCategory={correctByCategory}
+          statsByCategory={statsByCategory}
           onRestart={handleRestart}
           onSaveRanking={handleSaveRanking}
           onViewRanking={() => setScreen("ranking")}
@@ -860,8 +867,8 @@ function ResultsTwoPlayerScreen({
   );
 }
 
-function LearningSummary({ correctByCategory }) {
-  const entries = Object.entries(correctByCategory);
+function LearningSummary({ statsByCategory }) {
+  const entries = Object.entries(statsByCategory);
   if (entries.length === 0) {
     return (
       <p>
@@ -870,22 +877,35 @@ function LearningSummary({ correctByCategory }) {
       </p>
     );
   }
-  const sorted = [...entries].sort((a, b) => b[1] - a[1]);
-  const bestCat = sorted[0];
-  const worstCat = sorted[sorted.length - 1];
-  const narrative =
-    sorted.length === 1
-      ? `Has brillado en ${bestCat[0]}.`
-      : `Has brillado en ${bestCat[0]}, te falta afinar en ${worstCat[0]}.`;
+
+  const withAccuracy = entries.map(([category, stats]) => ({
+    category,
+    ...stats,
+    accuracy: stats.correct / stats.total,
+  }));
+  const sorted = [...withAccuracy].sort((a, b) => b.accuracy - a.accuracy);
+  const best = sorted[0];
+  const worst = sorted[sorted.length - 1];
+
+  let narrative;
+  if (sorted.length === 1) {
+    narrative = `Has acertado ${best.correct}/${best.total} en ${best.category}.`;
+  } else if (worst.accuracy === best.accuracy) {
+    narrative =
+      best.accuracy === 1
+        ? "¡Pleno! Has acertado todas las preguntas, en todas las categorías."
+        : "Nivel parejo en todas las categorías: ni una destaca sobre las demás.";
+  } else {
+    narrative = `Has brillado en ${best.category}, te falta afinar en ${worst.category}.`;
+  }
 
   return (
     <div className="learning-summary">
       <h3>Resumen de aprendizaje</h3>
       <ul>
-        {entries.map(([category, count]) => (
+        {withAccuracy.map(({ category, correct, total }) => (
           <li key={category}>
-            Has acertado {count} pregunta{count !== 1 ? "s" : ""} de{" "}
-            {category}.
+            Has acertado {correct}/{total} en {category}.
           </li>
         ))}
       </ul>
@@ -900,7 +920,7 @@ function ResultsScreen({
   correct,
   total,
   category,
-  correctByCategory,
+  statsByCategory,
   onRestart,
   onSaveRanking,
   onViewRanking,
@@ -923,7 +943,7 @@ function ResultsScreen({
 
       {mode === "juego" && <p>Puntuación total: {score}</p>}
 
-      <LearningSummary correctByCategory={correctByCategory} />
+      <LearningSummary statsByCategory={statsByCategory} />
 
       {mode === "juego" && (
         <div className="ranking-form">
