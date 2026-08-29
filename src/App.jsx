@@ -274,29 +274,7 @@ function App() {
   return (
     <div className="app-container">
       <header className="app-header">
-        <div className="logo-wrap">
-          <img src={logoImg} alt="POETRIVIAL" className="app-logo" />
-          <svg
-            className="logo-quill"
-            viewBox="0 0 24 24"
-            fill="none"
-            aria-hidden="true"
-          >
-            <path
-              d="M20.5 2.5c-3.8 0-9.4 2.1-12.6 5.3C4.8 10.9 3.5 15 3 18.4c-.1.6.4 1.1 1 1l.2-.1 3.3-1.6M20.5 2.5c0 3.8-2.1 9.4-5.3 12.6-2 2-4.4 3.4-6.7 4.2M20.5 2.5c-1 3-3 6.7-5.6 9.3"
-              stroke="currentColor"
-              strokeWidth="1.6"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            <path
-              d="M11 15.5 3.3 22"
-              stroke="currentColor"
-              strokeWidth="1.6"
-              strokeLinecap="round"
-            />
-          </svg>
-        </div>
+        <img src={logoImg} alt="POETRIVIAL" className="app-logo" />
         <p className="subtitle">
           Pon a prueba tus conocimientos poéticos y deja ya de creerte Lope de
           Vega.
@@ -312,8 +290,16 @@ function App() {
           onPlayer1NameChange={setPlayer1Name}
           onPlayer2NameChange={setPlayer2Name}
           onNext={() => setScreen("setup")}
-          onViewRanking={() => setScreen("ranking")}
         />
+      )}
+
+      {screen === "welcome" && (
+        <button
+          className="btn secondary ranking-link"
+          onClick={() => setScreen("ranking")}
+        >
+          Ver ranking
+        </button>
       )}
 
       {screen === "setup" && (
@@ -434,7 +420,6 @@ function WelcomeScreen({
   onPlayer1NameChange,
   onPlayer2NameChange,
   onNext,
-  onViewRanking,
 }) {
   return (
     <main className="screen">
@@ -495,15 +480,11 @@ function WelcomeScreen({
         </div>
       )}
 
-      <div className="screen-actions">
-        <button className="btn" onClick={onNext}>
+      <div className="nav-actions">
+        <button className="nav-btn primary" onClick={onNext}>
           Siguiente
         </button>
       </div>
-
-      <button className="btn secondary" onClick={onViewRanking}>
-        Ver ranking
-      </button>
     </main>
   );
 }
@@ -559,11 +540,11 @@ function SetupScreen({
         ))}
       </div>
 
-      <div className="screen-actions">
-        <button className="btn secondary" onClick={onBack}>
+      <div className="nav-actions">
+        <button className="nav-btn ghost" onClick={onBack}>
           Atrás
         </button>
-        <button className="btn" onClick={onNext}>
+        <button className="nav-btn primary" onClick={onNext}>
           Siguiente
         </button>
       </div>
@@ -588,8 +569,8 @@ function CategoryScreen({ categories, onBack, onSelect }) {
         ))}
       </div>
 
-      <div className="screen-actions">
-        <button className="btn secondary" onClick={onBack}>
+      <div className="nav-actions">
+        <button className="nav-btn ghost" onClick={onBack}>
           Atrás
         </button>
       </div>
