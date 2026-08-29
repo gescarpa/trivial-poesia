@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import "./index.css";
 import lopeImg from "./assets/lope.png";
 import logoImg from "./assets/logo.png";
@@ -7,6 +7,7 @@ import { QUESTIONS, CATEGORIES } from "./data";
 const LOCAL_STORAGE_KEY = "trivial-poesia-ranking";
 const ROUND_OPTIONS = [5, 10, 15];
 const TURN_SECONDS = 60;
+const COUNTDOWN_START = 3;
 
 function shuffle(list) {
   return [...list].sort(() => Math.random() - 0.5);
@@ -37,11 +38,13 @@ function resolvePlayerName(name, fallback) {
 }
 
 function App() {
-  const [screen, setScreen] = useState("home");
+  const [screen, setScreen] = useState("welcome");
   const [mode, setMode] = useState("juego");
   const [level, setLevel] = useState("básico");
   const [roundCount, setRoundCount] = useState(10);
   const [selectedCategory, setSelectedCategory] = useState(null);
+  const [pendingCategory, setPendingCategory] = useState(null);
+  const [countdownValue, setCountdownValue] = useState(COUNTDOWN_START);
   const [player1Name, setPlayer1Name] = useState("");
   const [player2Name, setPlayer2Name] = useState("");
 
@@ -119,13 +122,31 @@ function App() {
     setScreen("quiz2p");
   }
 
+  const startGameRef = useRef(() => {});
+  useEffect(() => {
+    startGameRef.current = () => {
+      if (mode === "2jugadores") handleStart2P(pendingCategory);
+      else handleStart(pendingCategory);
+    };
+  });
+
   function handleCategorySelect(category) {
-    if (mode === "2jugadores") {
-      handleStart2P(category);
-    } else {
-      handleStart(category);
-    }
+    setPendingCategory(category);
+    setCountdownValue(COUNTDOWN_START);
+    setScreen("countdown");
   }
+
+  useEffect(() => {
+    if (screen !== "countdown" || countdownValue <= 0) return;
+    const id = setTimeout(() => setCountdownValue((v) => v - 1), 700);
+    return () => clearTimeout(id);
+  }, [screen, countdownValue]);
+
+  useEffect(() => {
+    if (screen !== "countdown" || countdownValue !== 0) return;
+    const id = setTimeout(() => startGameRef.current(), 550);
+    return () => clearTimeout(id);
+  }, [screen, countdownValue]);
 
   function handleOptionClick(index) {
     if (showFeedback || !currentQuestion) return;
@@ -227,8 +248,10 @@ function App() {
   }
 
   function handleRestart() {
-    setScreen("home");
+    setScreen("welcome");
     setSelectedCategory(null);
+    setPendingCategory(null);
+    setCountdownValue(COUNTDOWN_START);
     setCurrentQuestions([]);
     setCurrentIndex(0);
     setCurrentScore(0);
@@ -251,30 +274,69 @@ function App() {
   return (
     <div className="app-container">
       <header className="app-header">
-        <img src={logoImg} alt="POETRIVIAL" className="app-logo" />
+        <div className="logo-wrap">
+          <img src={logoImg} alt="POETRIVIAL" className="app-logo" />
+          <svg
+            className="logo-quill"
+            viewBox="0 0 24 24"
+            fill="none"
+            aria-hidden="true"
+          >
+            <path
+              d="M20.5 2.5c-3.8 0-9.4 2.1-12.6 5.3C4.8 10.9 3.5 15 3 18.4c-.1.6.4 1.1 1 1l.2-.1 3.3-1.6M20.5 2.5c0 3.8-2.1 9.4-5.3 12.6-2 2-4.4 3.4-6.7 4.2M20.5 2.5c-1 3-3 6.7-5.6 9.3"
+              stroke="currentColor"
+              strokeWidth="1.6"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <path
+              d="M11 15.5 3.3 22"
+              stroke="currentColor"
+              strokeWidth="1.6"
+              strokeLinecap="round"
+            />
+          </svg>
+        </div>
         <p className="subtitle">
           Pon a prueba tus conocimientos poéticos y deja ya de creerte Lope de
           Vega.
         </p>
       </header>
 
-      {screen === "home" && (
-        <HomeScreen
-          categories={CATEGORIES}
+      {screen === "welcome" && (
+        <WelcomeScreen
           mode={mode}
-          level={level}
-          roundCount={roundCount}
           player1Name={player1Name}
           player2Name={player2Name}
           onModeChange={setMode}
-          onLevelChange={setLevel}
-          onRoundCountChange={setRoundCount}
           onPlayer1NameChange={setPlayer1Name}
           onPlayer2NameChange={setPlayer2Name}
-          onStart={handleCategorySelect}
+          onNext={() => setScreen("setup")}
           onViewRanking={() => setScreen("ranking")}
         />
       )}
+
+      {screen === "setup" && (
+        <SetupScreen
+          mode={mode}
+          level={level}
+          roundCount={roundCount}
+          onLevelChange={setLevel}
+          onRoundCountChange={setRoundCount}
+          onBack={() => setScreen("welcome")}
+          onNext={() => setScreen("category")}
+        />
+      )}
+
+      {screen === "category" && (
+        <CategoryScreen
+          categories={CATEGORIES}
+          onBack={() => setScreen("setup")}
+          onSelect={handleCategorySelect}
+        />
+      )}
+
+      {screen === "countdown" && <CountdownScreen value={countdownValue} />}
 
       {screen === "quiz" && currentQuestion && (
         <QuizScreen
@@ -344,7 +406,7 @@ function App() {
       )}
 
       {screen === "ranking" && (
-        <RankingScreen ranking={ranking} onBack={() => setScreen("home")} />
+        <RankingScreen ranking={ranking} onBack={() => setScreen("welcome")} />
       )}
 
       <footer className="app-footer">
@@ -364,26 +426,20 @@ function App() {
   );
 }
 
-function HomeScreen({
-  categories,
+function WelcomeScreen({
   mode,
-  level,
-  roundCount,
   player1Name,
   player2Name,
   onModeChange,
-  onLevelChange,
-  onRoundCountChange,
   onPlayer1NameChange,
   onPlayer2NameChange,
-  onStart,
+  onNext,
   onViewRanking,
 }) {
-  const roundLabel = mode === "2jugadores" ? "Rondas" : "Preguntas";
-
   return (
     <main className="screen">
       <img src={lopeImg} alt="Lope de Vega" className="lope-hero" />
+      <p className="eyebrow">¡Bienvenido, poeta!</p>
       <h2>Elige cómo quieres jugar</h2>
       <div className="mode-toggle">
         <button
@@ -439,6 +495,35 @@ function HomeScreen({
         </div>
       )}
 
+      <div className="screen-actions">
+        <button className="btn" onClick={onNext}>
+          Siguiente
+        </button>
+      </div>
+
+      <button className="btn secondary" onClick={onViewRanking}>
+        Ver ranking
+      </button>
+    </main>
+  );
+}
+
+function SetupScreen({
+  mode,
+  level,
+  roundCount,
+  onLevelChange,
+  onRoundCountChange,
+  onBack,
+  onNext,
+}) {
+  const roundLabel = mode === "2jugadores" ? "Rondas" : "Preguntas";
+
+  return (
+    <main className="screen">
+      <p className="eyebrow">Paso 2 de 3</p>
+      <h2>Nivel y duración</h2>
+
       <h3>Nivel de dificultad</h3>
       <div className="mode-toggle">
         <button
@@ -474,22 +559,51 @@ function HomeScreen({
         ))}
       </div>
 
-      <h3>Categorías</h3>
+      <div className="screen-actions">
+        <button className="btn secondary" onClick={onBack}>
+          Atrás
+        </button>
+        <button className="btn" onClick={onNext}>
+          Siguiente
+        </button>
+      </div>
+    </main>
+  );
+}
+
+function CategoryScreen({ categories, onBack, onSelect }) {
+  return (
+    <main className="screen">
+      <p className="eyebrow">Paso 3 de 3</p>
+      <h2>Elige una categoría</h2>
       <div className="category-list">
         {categories.map((cat) => (
           <button
             key={cat}
             className="btn category-btn"
-            onClick={() => onStart(cat)}
+            onClick={() => onSelect(cat)}
           >
             {cat}
           </button>
         ))}
       </div>
 
-      <button className="btn secondary" onClick={onViewRanking}>
-        Ver ranking
-      </button>
+      <div className="screen-actions">
+        <button className="btn secondary" onClick={onBack}>
+          Atrás
+        </button>
+      </div>
+    </main>
+  );
+}
+
+function CountdownScreen({ value }) {
+  return (
+    <main className="screen countdown-screen">
+      <p className="eyebrow">Prepárate...</p>
+      <div className="countdown-number" key={value}>
+        {value > 0 ? value : "¡Ya!"}
+      </div>
     </main>
   );
 }
@@ -516,6 +630,11 @@ function QuestionMetaBlock({ question }) {
       )}
     </div>
   );
+}
+
+function optionClassName(index, correctIndex, showFeedback) {
+  if (!showFeedback) return "option-btn";
+  return index === correctIndex ? "option-btn correct" : "option-btn incorrect";
 }
 
 function QuizScreen({
@@ -560,23 +679,16 @@ function QuizScreen({
       )}
 
       <div className="options-list">
-        {question.options.map((opt, index) => {
-          let className = "option-btn";
-          if (showFeedback) {
-            if (index === question.correctIndex) className = "correct";
-            else if (index === selectedOption) className = "incorrect";
-          }
-          return (
-            <button
-              key={index}
-              className={className}
-              onClick={() => onOptionClick(index)}
-              disabled={showFeedback}
-            >
-              {opt}
-            </button>
-          );
-        })}
+        {question.options.map((opt, index) => (
+          <button
+            key={index}
+            className={optionClassName(index, question.correctIndex, showFeedback)}
+            onClick={() => onOptionClick(index)}
+            disabled={showFeedback}
+          >
+            {opt}
+          </button>
+        ))}
       </div>
 
       {showFeedback && (
@@ -698,23 +810,16 @@ function TwoPlayerQuizScreen({
       <h2 className="question-text">{question.question}</h2>
 
       <div className="options-list">
-        {question.options.map((opt, index) => {
-          let className = "option-btn";
-          if (showFeedback) {
-            if (index === question.correctIndex) className = "correct";
-            else if (index === selectedOption) className = "incorrect";
-          }
-          return (
-            <button
-              key={index}
-              className={className}
-              onClick={() => onOptionClick(index)}
-              disabled={showFeedback}
-            >
-              {opt}
-            </button>
-          );
-        })}
+        {question.options.map((opt, index) => (
+          <button
+            key={index}
+            className={optionClassName(index, question.correctIndex, showFeedback)}
+            onClick={() => onOptionClick(index)}
+            disabled={showFeedback}
+          >
+            {opt}
+          </button>
+        ))}
       </div>
 
       {showFeedback && (
@@ -882,19 +987,23 @@ function RankingScreen({ ranking, onBack }) {
       {ranking.length === 0 ? (
         <p>Aún no hay puntuaciones guardadas.</p>
       ) : (
-        <ol className="ranking-list">
+        <ul className="ranking-list">
           {ranking.map((entry, index) => (
-            <li key={index}>
-              <span className="rank-position">{index + 1}.</span>
-              <span className="rank-name">{entry.name}</span>
-              <span className="rank-score">{entry.score} puntos</span>
-              <span className="rank-meta">
-                {entry.correct}/{entry.total} en {entry.category},{" "}
-                {entry.mode}, {entry.level}
-              </span>
+            <li key={index} className="rank-entry">
+              <span className="rank-position">{index + 1}</span>
+              <div className="rank-main">
+                <div className="rank-top-row">
+                  <span className="rank-name">{entry.name}</span>
+                  <span className="rank-score">{entry.score} pts</span>
+                </div>
+                <span className="rank-meta">
+                  {entry.correct}/{entry.total} · {entry.category} ·{" "}
+                  {entry.mode} · {entry.level}
+                </span>
+              </div>
             </li>
           ))}
-        </ol>
+        </ul>
       )}
       <button className="btn" onClick={onBack}>
         Volver
